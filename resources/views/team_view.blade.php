@@ -25,7 +25,7 @@
                     <td>{{$index+1}}</td>
                     <td>{{$player->name}}</td>
                     <td>{{$player->value}}</td>
-                    <td>{{$player->score}}</td>
+                    <td>{{round($player->score, 1)}}</td>
                     <td>{{$player->sports_played}}</td>
                 </tr>
             @endforeach
