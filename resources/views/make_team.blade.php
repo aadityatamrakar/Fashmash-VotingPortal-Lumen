@@ -134,11 +134,11 @@
                     </thead>
                     <tbody id="m_player_data"></tbody>
                     <tfoot>
-                        <tr>
-                            <td>Total</td>
-                            <td colspan="3">T: <span id="m_total"></span>, M: <span id="m_total_male"></span>, F: <span id="m_total_female"></span></td>
-                            <td style="text-align: right; padding-right: 10px;"><span id="m_cost"></span></td>
-                        </tr>
+                    <tr>
+                        <td>Total</td>
+                        <td colspan="3">T: <span id="m_total"></span>, M: <span id="m_total_male"></span>, F: <span id="m_total_female"></span></td>
+                        <td style="text-align: right; padding-right: 10px;"><span id="m_cost"></span></td>
+                    </tr>
                     </tfoot>
                 </table>
                 <div class="modal-footer">
@@ -291,29 +291,26 @@
             if(team_name.length > 0)
             {
                 var selected = _.map(_.where(players, {selected: true}), function (v, i){ return v.id; });
-                if(selected.length != 25){
-                    $.ajax({
-                        url: "{{ route('save_team') }}",
-                        type: "POST",
-                        data: {name: team_name, total: total, male: male, female: female, cost: cost, players: JSON.stringify(selected)}
-                    }).done(function (res){
-                        if(res.status == 'ok'){
-                            $("#reviewModal").modal('hide');
-                            alert('Team Created Successfully.');
-                            window.location.reload();
-                        }else if(res.status == 'error'){
-                            $("#reviewModal").modal('hide');
 
-                            if(res.error == 'team_name_taken') alert('Team name already used by some other user.');
-                            else if(res.error == 'already_created') alert('Team already Created.');
-                            else if(res.error == 'male_exceeded') alert('Team has more than 20 male players.');
-                            else if(res.error == 'count_exceeded') alert('Team total member count exceeded.');
-                            else if(res.error == 'cost_exceeded') alert('Team budget limit exceeded.');
-                        }
-                    });
-                }else{
+                $.ajax({
+                    url: "{{ route('save_team') }}",
+                    type: "POST",
+                    data: {name: team_name, total: total, male: male, female: female, cost: cost, players: JSON.stringify(selected)}
+                }).done(function (res){
+                    if(res.status == 'ok'){
+                        $("#reviewModal").modal('hide');
+                        alert('Team Created Successfully.');
+                        window.location.reload();
+                    }else if(res.status == 'error'){
+                        $("#reviewModal").modal('hide');
 
-                }
+                        if(res.error == 'team_name_taken') alert('Team name already used by some other user.');
+                        else if(res.error == 'already_created') alert('Team already Created.');
+                        else if(res.error == 'male_exceeded') alert('Team has more than 20 male players.');
+                        else if(res.error == 'count_exceeded') alert('Team total member count exceeded.');
+                        else if(res.error == 'cost_exceeded') alert('Team budget limit exceeded.');
+                    }
+                });
             }else{
                 alert("Team name required.");
                 $("#reviewModal").modal('hide');
