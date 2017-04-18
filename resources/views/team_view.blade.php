@@ -1,14 +1,11 @@
 @extends('app')
 
-@section('style')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.13/css/jquery.dataTables.min.css" />
-@endsection
 @section('content')
     <div class="container">
         @include('nav')
-        <h3>Score List of Team : {{ $team->name }}</h3>
+        <h3>Score List of Team : {{ $team->name }}, Team Score : {{ round($team_score, 2) }}</h3>
         <hr>
-        <table class="table table-responsive" id="player_tbl">
+        <table class="table table-responsive">
             <thead>
             <tr>
                 <th>#</th>
@@ -24,7 +21,7 @@
                     {{--<td>{{ (($players->currentPage()-1)*$players->perPage())+($index+1) }}</td>--}}
                     <td>{{$index+1}}</td>
                     <td>{{$player->name}}</td>
-                    <td>{{$player->value}}</td>
+                    <td>{{round($player->value, 1)}}</td>
                     <td>{{round($player->score, 1)}}</td>
                     <td>{{$player->sports_played}}</td>
                 </tr>
@@ -32,13 +29,4 @@
             </tbody>
         </table>
     </div>
-@endsection
-
-@section('script')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.13/js/jquery.dataTables.min.js"></script>
-    <script>
-        $(document).ready(function (){
-            $("#player_tbl").dataTable();
-        });
-    </script>
 @endsection

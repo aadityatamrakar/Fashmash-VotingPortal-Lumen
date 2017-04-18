@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('style')
-    <link href="css/cover.css" rel="stylesheet">
+    <link href="/css/cover.css" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -14,8 +14,13 @@
                         <nav>
                             <ul class="nav masthead-nav">
                                 <li><a href="{{ route('trending') }}">Trending</a></li>
-                                <li><a href="{{ route('login') }}">Login</a></li>
-                                <li><a href="{{ route('contact') }}">Contact</a></li>
+                                @if(!isset($_SESSION['username']))
+                                    <li><a href="{{ route('login') }}">Login</a></li>
+                                @else
+                                    <li><a href="{{ route('view_team') }}">Team Score</a></li>
+                                    <li><a href="{{ route('logout') }}">Logout</a></li>
+                                @endif
+                                {{--<li><a href="{{ route('contact') }}">Contact</a></li>--}}
                             </ul>
                         </nav>
                     </div>
@@ -23,7 +28,7 @@
 
                 <div class="inner cover">
                     <h1 class="cover-heading">Voting Page</h1>
-                    <p class="lead">Were we let in for our looks? No. Will we be judged on them? No.</p>
+                    <p class="lead">Who would you rather have in your team ?</p>
                 </div>
                 <div class="row">
                     <div class="col-xs-6">

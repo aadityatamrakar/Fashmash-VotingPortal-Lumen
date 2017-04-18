@@ -155,7 +155,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/unveil/1.3.0/jquery.unveil.min.js"></script>
     <script>
         var players = [];
-        var total=0, male=0, female=0, budget=190, cost=0;
+        var total=0, male=0, female=0, budget=175, cost=0;
         $(document).ready(function (){
             $.ajax({
                 url: '{{ route('players') }}',
@@ -205,7 +205,7 @@
                 cost += v.v;
             });
             $("#total_players").val('Total: '+total+', Male: '+male+', Female: '+female);
-            $("#total_cost").val((190-cost).toFixed(1)+' Lacs');
+            $("#total_cost").val((175-cost).toFixed(1)+' Lacs');
         }
         function render_players(data){
             var html='';
@@ -300,7 +300,7 @@
                     if(res.status == 'ok'){
                         $("#reviewModal").modal('hide');
                         alert('Team Created Successfully.');
-                        window.location.reload();
+                        window.location.href = '{{ route('view_team') }}';
                     }else if(res.status == 'error'){
                         $("#reviewModal").modal('hide');
 

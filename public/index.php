@@ -24,5 +24,5 @@ $app = require __DIR__.'/../bootstrap/app.php';
 | and wonderful application we have prepared for them.
 |
 */
-
+date_default_timezone_set('Asia/Kolkata');
 $app->run();

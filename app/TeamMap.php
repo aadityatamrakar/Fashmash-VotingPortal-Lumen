@@ -10,4 +10,11 @@ class TeamMap extends Model
 
     protected $fillable = ['team_id', 'player_id'];
 
+    public function team(){
+        return $this->belongsTo('App\Team');
+    }
+
+    public function player(){
+        return $this->belongsTo('App\Player');
+    }
 }

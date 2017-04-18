@@ -16,6 +16,12 @@
                                 <input id="name" name="name" type="text" class="form-control input-md" required="">
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="email">Email ID</label>
+                            <div class="col-md-6">
+                                <input id="email" name="email" type="text" class="form-control input-md" required="">
+                            </div>
+                        </div>
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="username">Login Username</label>
@@ -49,16 +55,18 @@
     <script>
         $("#register").click(function (e){
             e.preventDefault();
+
             var name = $("#name");
+            var email = $("#email");
             var username = $("#username");
             var password = $("#password");
-            if(name=='' || username =='' || password == '')
+            if(name.val()=='' || username.val() =='' || password.val() == '')
                 alert('Kindly enter all the details.');
             else{
                 $.ajax({
                     url: "{{ route('register') }}",
                     type: 'POST',
-                    data: {name: name.val(), username: username.val(), password: password.val()}
+                    data: {name: name.val(), email: email.val(), username: username.val(), password: password.val()}
                 }).done(function (res) {
                     if(res.status == 'ok') {
                         if(confirm('User created successfully, Login Now ?')){

@@ -20,6 +20,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $table = 'users';
 
     protected $fillable = [
-        'name', 'username', 'password'
+        'name', 'username', 'password', 'email'
     ];
+
+    public function team(){
+        return $this->hasOne('App\Team');
+    }
 }

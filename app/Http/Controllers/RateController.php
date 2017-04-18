@@ -3,9 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Player;
+use Carbon\Carbon;
 
 class RateController extends Controller
 {
+    public function __construct()
+    {
+        if( ($res = self::check_launch()) != false) return $res;
+    }
+
+    public static function check_launch()
+    {
+//        $open = Carbon::create(2017, 01, 28);
+//        $close = Carbon::create(2018, 01, 28);
+//        if(! Carbon::now()->between($open, $close))
+//            return redirect()->route('coming_soon');
+        return false;
+    }
+
     public function vote($winner)
     {
         session_start();
@@ -28,6 +43,11 @@ class RateController extends Controller
 
         $player_1->save();
         $player_2->save();
+
+        unset($_SESSION['player_1']);
+        unset($_SESSION['player_2']);
+
+        header('x-team: '.stripos($_SERVER['HTTP_REFERER'], 'mansiverma'));
 
         return redirect()->route('home');
     }

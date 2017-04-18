@@ -123,18 +123,18 @@ body {
 }
 
 @media (min-width: 768px) {
-	
+
 	.site-wrapper{
 		animation: chngBg 30s linear infinite;
 	}
-	
+
 	@keyframes chngBg {
-    0% {background-image: url('/img/bg/0.jpg');}
-    25% {background-image: url('/img/bg/4.jpg');}
-    50% {background-image: url('/img/bg/3.jpg');}
-    75% {background-image: url('/img/bg/2.jpg');}
-    100% {background-image: url('/img/bg/1.jpg');}
-}
+        0% {background-image: url('/img/bg/0.jpg');}
+        25% {background-image: url('/img/bg/4.jpg');}
+        50% {background-image: url('/img/bg/3.jpg');}
+        75% {background-image: url('/img/bg/2.jpg');}
+        100% {background-image: url('/img/bg/1.jpg');}
+    }
 	
     .masthead-brand {
         float: left;
